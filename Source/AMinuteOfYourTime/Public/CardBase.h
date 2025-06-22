@@ -8,9 +8,6 @@
 #include "Engine/DataAsset.h"
 #include "CardBase.generated.h"
 
-/**
- * 
- */
 UCLASS(DisplayName="Card Data Base", Blueprintable, BlueprintType)
 class AMINUTEOFYOURTIME_API UCardBase : public UPrimaryDataAsset
 {
@@ -35,3 +32,4 @@ public:
 	/*UPROPERTY(EditAnywhere)
 	FGameplayTagContainer CardFlags;*/
 };
+
