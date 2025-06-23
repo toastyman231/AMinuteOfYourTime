@@ -3,8 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CardBase.h"
 #include "UObject/Interface.h"
 #include "CardInterface.generated.h"
+
+class UDeckObjectBase;
 
 UINTERFACE(MinimalAPI, Blueprintable)
 class UCardInterface : public UInterface {
@@ -38,6 +41,9 @@ class IPlayerHandInterface
 
 public:
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
-	void OnHandStateChanged();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void AddCard(UCardBase* Card, FVector2D DrawLocation);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void RemoveCard(UCardBase* Card);
 };

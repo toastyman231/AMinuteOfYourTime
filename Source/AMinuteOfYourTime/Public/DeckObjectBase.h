@@ -7,11 +7,6 @@
 #include "UObject/NoExportTypes.h"
 #include "DeckObjectBase.generated.h"
 
-class UDeckObjectBase;
-
-UDELEGATE(BlueprintCallable)
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDeckChangedSignature, UDeckObjectBase*, Deck);
-
 UCLASS(BlueprintType, DisplayName="Deck Object")
 class AMINUTEOFYOURTIME_API UDeckObjectBase : public UObject
 {
@@ -24,6 +19,7 @@ public:
 
 public:
 
+	UFUNCTION(BlueprintCallable)
 	void Initialize(UDeckDataBase* DeckData, FName Name);
 
 	// Returns actual number of cards drawn, in the case that the deck has less than Count
