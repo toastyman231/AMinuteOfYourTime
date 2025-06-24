@@ -13,9 +13,13 @@ void UDeckObjectBase::Initialize(UDeckDataBase* DeckData, FName Name)
 	{
 		Cards.Enqueue(std::move(card));
 	}
+
+	CardCount = DeckData->CardList.Num();
+
+	DeckCountChangeEvent.Broadcast(DeckData->CardList.Num());
 }
 
-int UDeckObjectBase::DrawCards(int Count, TArray<UCardBase*>& OutCardList)
+int UDeckObjectBase::DrawCards(int Count, TArray<UCardBase*>& OutCardList, bool BroadcastChange)
 {
 	int ReturnCount = 0;
 
@@ -28,6 +32,10 @@ int UDeckObjectBase::DrawCards(int Count, TArray<UCardBase*>& OutCardList)
 		Cards.Pop();
 		OutCardList.Add(std::move(Card));
 		ReturnCount++;
+
+		CardCount--;
+
+		if (BroadcastChange) DeckCountChangeEvent.Broadcast(1);
 	}
 
 	return ReturnCount;
@@ -36,6 +44,9 @@ int UDeckObjectBase::DrawCards(int Count, TArray<UCardBase*>& OutCardList)
 void UDeckObjectBase::AddCard(UCardBase* Card)
 {
 	Cards.Enqueue(std::move(Card));
+
+	CardCount++;
+	DeckCountChangeEvent.Broadcast(1);
 }
 
 void UDeckObjectBase::AddCards(const TArray<UCardBase*>& CardList)

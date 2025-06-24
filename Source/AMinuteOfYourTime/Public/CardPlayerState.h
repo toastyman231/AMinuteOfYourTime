@@ -9,7 +9,7 @@
 #include "CardPlayerState.generated.h"
 
 UDELEGATE(BlueprintCallable)
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FHandChangedSignature, const TArray<UCardBase*>&, Hand, FVector2D, DrawLocation);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FHandChangedSignature, const TArray<UCardBase*>&, Hand, FVector2D, DrawLocation, int32, HandDelta);
 
 UCLASS()
 class AMINUTEOFYOURTIME_API ACardPlayerState : public APlayerState, public IPlayerHandInterface
@@ -31,4 +31,5 @@ public:
 
 	virtual void AddCard_Implementation(UCardBase* Card, FVector2D DrawLocation) override;
 	virtual void RemoveCard_Implementation(UCardBase* Card) override;
+	virtual void AddCards_Implementation(const TArray<UCardBase*>& Cards, FVector2D DrawLocation) override;
 };

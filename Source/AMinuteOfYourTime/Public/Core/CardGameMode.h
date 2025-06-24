@@ -20,5 +20,5 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	int32 DrawCardsToHand(UDeckObjectBase* Deck, TScriptInterface<IPlayerHandInterface> Hand,
-		FVector2D DrawLocation, int32 Count);
+		FVector2D DrawLocation, int32 Count, float Delay = 0.5f);
 };

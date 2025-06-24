@@ -45,5 +45,8 @@ public:
 	void AddCard(UCardBase* Card, FVector2D DrawLocation);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void AddCards(const TArray<UCardBase*>& Cards, FVector2D DrawLocation);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void RemoveCard(UCardBase* Card);
 };
