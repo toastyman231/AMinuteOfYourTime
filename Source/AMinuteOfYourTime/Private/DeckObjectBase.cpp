@@ -5,7 +5,7 @@
 
 #include "CardBase.h"
 
-void UDeckObjectBase::Initialize(UDeckDataBase* DeckData, FName Name)
+void UDeckObjectBase::Initialize(UDeckDataBase* DeckData, FName Name, bool Shuffle)
 {
 	DeckName = Name;
 
@@ -13,6 +13,8 @@ void UDeckObjectBase::Initialize(UDeckDataBase* DeckData, FName Name)
 	{
 		Cards.Enqueue(std::move(card));
 	}
+
+	if (Shuffle) this->Shuffle();
 
 	CardCount = DeckData->CardList.Num();
 

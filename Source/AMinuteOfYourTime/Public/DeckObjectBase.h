@@ -26,7 +26,7 @@ public:
 public:
 
 	UFUNCTION(BlueprintCallable)
-	void Initialize(UDeckDataBase* DeckData, FName Name);
+	void Initialize(UDeckDataBase* DeckData, FName Name, bool Shuffle);
 
 	UFUNCTION(BlueprintCallable)
 	int32 GetCardCount() const { return CardCount; }
