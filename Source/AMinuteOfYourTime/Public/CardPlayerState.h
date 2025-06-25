@@ -11,6 +11,9 @@
 UDELEGATE(BlueprintCallable)
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FHandChangedSignature, const TArray<UCardBase*>&, Hand, FVector2D, DrawLocation, int32, HandDelta);
 
+UDELEGATE(BlueprintCallable)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FActionPointsChangedSignature, int32, ActionPoints);
+
 UCLASS()
 class AMINUTEOFYOURTIME_API ACardPlayerState : public APlayerState, public IPlayerHandInterface
 {
@@ -24,10 +27,20 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	int32 MaxHandSize = 999;
 
+	UPROPERTY(BlueprintReadWrite)
+	int32 ActionPoints = 3;
+
+	UPROPERTY(BlueprintReadWrite)
+	int32 MaxActionPoints = 3;
+
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FHandChangedSignature HandChangedEvent;
 
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FActionPointsChangedSignature ActionPointsChangedEvent;
+
 public:
+	void AddActionPoints(int32 Amount);
 
 	virtual void AddCard_Implementation(UCardBase* Card, FVector2D DrawLocation) override;
 	virtual void RemoveCard_Implementation(UCardBase* Card) override;

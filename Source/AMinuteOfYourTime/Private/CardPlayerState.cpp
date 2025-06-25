@@ -3,6 +3,13 @@
 
 #include "CardPlayerState.h"
 
+void ACardPlayerState::AddActionPoints(int32 Amount)
+{
+	ActionPoints = FMath::Clamp(ActionPoints + Amount, 0, MaxActionPoints);
+
+	ActionPointsChangedEvent.Broadcast(ActionPoints);
+}
+
 void ACardPlayerState::AddCard_Implementation(UCardBase* Card, FVector2D DrawLocation)
 {
 	if (PlayerHand.Num() >= MaxHandSize) return;
@@ -16,7 +23,7 @@ void ACardPlayerState::RemoveCard_Implementation(UCardBase* Card)
 {
 	if (!PlayerHand.Contains(Card)) return;
 
-	PlayerHand.Remove(Card);
+	PlayerHand.RemoveSingle(Card);
 
 	HandChangedEvent.Broadcast(PlayerHand, FVector2D(999, 999), -1);
 }
