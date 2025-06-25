@@ -29,6 +29,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	ECardType CardType;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float DestroyChance;
+
 	/*UPROPERTY(EditAnywhere)
 	FGameplayTagContainer CardFlags;*/
 };
