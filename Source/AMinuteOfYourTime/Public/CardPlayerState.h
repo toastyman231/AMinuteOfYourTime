@@ -40,6 +40,8 @@ public:
 	FActionPointsChangedSignature ActionPointsChangedEvent;
 
 public:
+
+	UFUNCTION(BlueprintCallable)
 	void AddActionPoints(int32 Amount);
 
 	virtual void AddCard_Implementation(UCardBase* Card, FVector2D DrawLocation) override;
