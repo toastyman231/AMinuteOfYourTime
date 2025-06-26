@@ -76,6 +76,7 @@ DerivedDataCache/*
 
 # Never ignore DLLs in the FMOD subfolder.
 !AMinuteOfYourTimeFMOD/**/Binaries/*
+!Plugins/**/Binaries
 
 # Never ignore libraries in the plugins folder
 !Plugins/**/*.dll
