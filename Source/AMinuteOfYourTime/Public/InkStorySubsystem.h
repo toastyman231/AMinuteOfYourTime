@@ -12,6 +12,9 @@ class UInkpotStoryAsset;
 class UInkpotStory;
 
 UDELEGATE(BlueprintCallable)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPathStartedSignature, FString, PathName);
+
+UDELEGATE(BlueprintCallable)
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPathEndReachedSignature, FString, PathName);
 
 UCLASS()
@@ -43,6 +46,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FPathEndReachedSignature PathEndReachedEvent;
+
+	UPROPERTY(BlueprintAssignable)
+	FPathStartedSignature PathStartedEvent;
 
 private:
 

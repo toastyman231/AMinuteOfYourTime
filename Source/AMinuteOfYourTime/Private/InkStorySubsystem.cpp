@@ -56,6 +56,8 @@ void UInkStorySubsystem::StartPath(const FString& Path)
 
 	Story->ChoosePath(Path);
 	CurrentPath = Path;
+
+	PathStartedEvent.Broadcast(Path);
 }
 
 void UInkStorySubsystem::StartPathWithParameters(const FString& Path, const TArray<FInkpotValue>& Params)
@@ -64,4 +66,6 @@ void UInkStorySubsystem::StartPathWithParameters(const FString& Path, const TArr
 
 	Story->ChoosePathString(Path, Params);
 	CurrentPath = Path;
+
+	PathStartedEvent.Broadcast(Path);
 }
