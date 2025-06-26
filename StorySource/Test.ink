@@ -1,7 +1,7 @@
 
 == TestKnot 
     This is a bit of test dialogue.
-    How are you doing today?
+    How are you doing today? # Speaker 1
         * [I am doing well.]
             That is good.
         * [Bad.]
