@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{7fe88ab0-616f-4c18-9867-ec79a7becb8a}">
+		<property name="name">
+			<value>Value</value>
+		</property>
+		<relationship name="folder">
+			<destination>{693a98c8-e9bf-45d6-867f-b0175a9fcb38}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{abce200d-66ec-4beb-a4ab-44a7e59a59b9}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{abce200d-66ec-4beb-a4ab-44a7e59a59b9}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>26</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Value A</value>
+			<value>Value B</value>
+			<value>Value C</value>
+			<value>Value D</value>
+			<value>Value E</value>
+			<value>Value F</value>
+			<value>Value G</value>
+			<value>Value H</value>
+			<value>Value I</value>
+			<value>Value J</value>
+			<value>Value K</value>
+			<value>Value L</value>
+			<value>Value M</value>
+			<value>Value N</value>
+			<value>Value O</value>
+			<value>Value P</value>
+			<value>Value Q</value>
+			<value>Value R</value>
+			<value>Value S</value>
+			<value>Value T</value>
+			<value>Value U</value>
+			<value>Value V</value>
+			<value>Value W</value>
+			<value>Value X</value>
+			<value>Value Y</value>
+			<value>Value Z</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

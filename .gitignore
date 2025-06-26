@@ -73,3 +73,27 @@ Plugins/**/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Never ignore DLLs in the FMOD subfolder.
+!AMinuteOfYourTimeFMOD/**/Binaries/*
+
+# Never ignore libraries in the plugins folder
+!Plugins/**/*.dll
+!Plugins/**/*.lib
+!Plugins/**/*.pdb
+!Plugins/**/*.exe
+
+# Ignore the Cache folder since it is updated locally.
+AMinuteOfYourTimeFMOD/.cache/*
+AMinuteOfYourTimeFMOD/.unsaved/*
+AMinuteOfYourTimeFMOD/.user/*
+
+# Ignore plugin Intermediates
+Plugins/**/Intermediate/*
+
+# Ignore bank files in the StreamingAssets folder.
+Content/AMinuteOfYourTime/FMOD/StreamingAssets/**/*.bank
+Content/AMinuteOfYourTime/FMOD/StreamingAssets/**/*.bank.meta
+
+# Log files can be ignored.
+fmod_editor.log
