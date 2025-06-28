@@ -42,6 +42,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void StartPathWithParameters(const FString& Path, const TArray<FInkpotValue>& Params);
 
+	UFUNCTION(BlueprintPure)
+	UInkpotStory* GetStory() const { return Story; }
+
 public:
 
 	UPROPERTY(BlueprintAssignable)
