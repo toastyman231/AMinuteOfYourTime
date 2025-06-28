@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{5bc613df-6eb7-4385-ae52-c8127f270e99}">
+		<property name="assetPath">
+			<value>DemonDialogue/T2.WAV</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.87741666666666662</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2149dffc-7537-4e5d-baac-77c3baf1ac56}</destination>
+		</relationship>
+	</object>
+</objects>
