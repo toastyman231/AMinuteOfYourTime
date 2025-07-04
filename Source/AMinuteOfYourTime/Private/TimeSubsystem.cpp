@@ -5,13 +5,25 @@
 
 #include "MathExtensions.h"
 #include "TargetSubsystem.h"
+#include "Kismet/GameplayStatics.h"
 
 void UTimeSubsystem::SetCurrentTime(ETimeslot NewTime)
 {
 	CurrentTime = NewTime;
 
-	if (UTargetSubsystem* TargetSubsystem = GEngine->GetEngineSubsystem<UTargetSubsystem>())
-		TargetSubsystem->UpdateLocationEvent.Broadcast(CurrentTime, CurrentDay);
+	if (UGameInstance* GI = UGameplayStatics::GetGameInstance(GEngine->GetWorldContextFromGameViewport(GEngine->GameViewport)->World()))
+	{
+		if (UTargetSubsystem* TargetSubsystem = GI->GetSubsystem<UTargetSubsystem>())
+			TargetSubsystem->UpdateLocationEvent.Broadcast(CurrentTime, CurrentDay);
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("NOT UPDATING, INVALID TARGET SUBS"));
+		}
+	} else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("NOT UPDATING, INVALID GI"));
+	}
+	
 	DateTimeChangedEvent.Broadcast(CurrentTime, CurrentDay);
 }
 
@@ -52,8 +64,12 @@ void UTimeSubsystem::SetCurrentDay(int32 Day)
 {
 	CurrentDay = FMath::Clamp(Day, 1, UINT8_MAX);
 
-	if (UTargetSubsystem* TargetSubsystem = GEngine->GetEngineSubsystem<UTargetSubsystem>())
-		TargetSubsystem->UpdateLocationEvent.Broadcast(CurrentTime, CurrentDay);
+	if (UGameInstance* GI = UGameplayStatics::GetGameInstance(GEngine->GetWorldContextFromGameViewport(GEngine->GameViewport)->World()))
+	{
+		if (UTargetSubsystem* TargetSubsystem = GI->GetSubsystem<UTargetSubsystem>())
+			TargetSubsystem->UpdateLocationEvent.Broadcast(CurrentTime, CurrentDay);
+	}
+
 	DateTimeChangedEvent.Broadcast(CurrentTime, CurrentDay);
 }
 

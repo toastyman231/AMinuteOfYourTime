@@ -8,8 +8,9 @@
 #include "TargetData.h"
 #include "TargetScheduleRow.h"
 #include "TargetSubsystem.h"
+#include "Kismet/GameplayStatics.h"
 
-void UTarget::Initialize(const UTargetData* TargetData)
+void UTarget::Initialize(const UTargetData* TargetData, const UObject* WorldContextObject)
 {
 	if (!TargetData)
 	{
@@ -28,8 +29,22 @@ void UTarget::Initialize(const UTargetData* TargetData)
 		CurrentLocation = DefaultSchedule->Timeslot1Location;
 	}
 
-	if (UTargetSubsystem* TargetSubsystem = GEngine->GetEngineSubsystem<UTargetSubsystem>())
-		TargetSubsystem->UpdateLocationEvent.AddDynamic(this, &UTarget::OnDateTimeChanged);
+	if (UGameInstance* GI = UGameplayStatics::GetGameInstance(WorldContextObject))
+	{
+		if (UTargetSubsystem* TargetSubsystem = GI->GetSubsystem<UTargetSubsystem>())
+		{
+			UE_LOG(LogTemp, Warning, TEXT("BOUND EVENT!"));
+			TargetSubsystem->UpdateLocationEvent.AddDynamic(this, &UTarget::OnDateTimeChanged);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("FAILED TO BIND EVENT! INVALID TARGET SUB"));
+		}
+			
+	} else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("FAILED TO BIND EVENT! INVALID GI"));
+	}
 }
 
 void UTarget::SetLocation(ELocation Location)
@@ -45,6 +60,16 @@ ELocation UTarget::GetLocation() const
 FName UTarget::GetTargetName() const
 {
 	return TargetName;
+}
+
+void UTarget::AddScheduleKnowledge(FDateTimePair Knowledge)
+{
+	AcquiredScheduleKnowledge.AddUnique(Knowledge);
+}
+
+bool UTarget::HasScheduleKnowledge(FDateTimePair Knowledge) const
+{
+	return AcquiredScheduleKnowledge.Contains(Knowledge);
 }
 
 void UTarget::OnDateTimeChanged(ETimeslot CurrentTime, int32 CurrentDay)

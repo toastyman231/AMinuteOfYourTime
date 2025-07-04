@@ -17,7 +17,7 @@ class AMINUTEOFYOURTIME_API UTarget : public UObject
 
 public:
 
-	void Initialize(const UTargetData* TargetData);
+	void Initialize(const UTargetData* TargetData, const UObject* WorldContextObject);
 
 	void SetLocation(ELocation Location);
 
@@ -25,6 +25,12 @@ public:
 	ELocation GetLocation() const;
 	UFUNCTION(BlueprintCallable)
 	FName GetTargetName() const;
+
+	UFUNCTION(BlueprintCallable)
+	void AddScheduleKnowledge(FDateTimePair Knowledge);
+
+	UFUNCTION(BlueprintCallable)
+	bool HasScheduleKnowledge(FDateTimePair Knowledge) const;
 
 private:
 
@@ -38,4 +44,6 @@ private:
 
 	UPROPERTY()
 	UDataTable* Schedule;
+
+	TArray<FDateTimePair> AcquiredScheduleKnowledge;
 };
