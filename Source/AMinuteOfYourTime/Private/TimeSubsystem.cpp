@@ -4,11 +4,14 @@
 #include "TimeSubsystem.h"
 
 #include "MathExtensions.h"
+#include "TargetSubsystem.h"
 
 void UTimeSubsystem::SetCurrentTime(ETimeslot NewTime)
 {
 	CurrentTime = NewTime;
 
+	if (UTargetSubsystem* TargetSubsystem = GEngine->GetEngineSubsystem<UTargetSubsystem>())
+		TargetSubsystem->UpdateLocationEvent.Broadcast(CurrentTime, CurrentDay);
 	DateTimeChangedEvent.Broadcast(CurrentTime, CurrentDay);
 }
 
@@ -49,6 +52,8 @@ void UTimeSubsystem::SetCurrentDay(int32 Day)
 {
 	CurrentDay = FMath::Clamp(Day, 1, UINT8_MAX);
 
+	if (UTargetSubsystem* TargetSubsystem = GEngine->GetEngineSubsystem<UTargetSubsystem>())
+		TargetSubsystem->UpdateLocationEvent.Broadcast(CurrentTime, CurrentDay);
 	DateTimeChangedEvent.Broadcast(CurrentTime, CurrentDay);
 }
 
